@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <title>Happy Birthday, Anusha 🎂</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #020617;
@@ -94,7 +96,8 @@
       background: rgba(255, 255, 255, 0.8);
     }
 
-    /* HERO */
+    /* HERO LAYOUT */
+
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
@@ -112,7 +115,7 @@
     .hero-main {
       background: radial-gradient(circle at top left, #111827 0, #020617 40%);
       border-radius: 24px;
-      padding: 20px 20px 16px;
+      padding: 20px 20px 18px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       position: relative;
@@ -144,10 +147,10 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(236, 72, 153, 0.6);
       color: var(--accent);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       backdrop-filter: blur(12px);
     }
 
@@ -168,12 +171,13 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 12px;
+      margin-bottom: 8px;
     }
 
     .hero-title-block h1 {
-      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      font-size: clamp(1.9rem, 3vw, 2.3rem);
       letter-spacing: -0.03em;
-      margin-bottom: 2px;
+      margin-bottom: 6px;
     }
 
     .hero-title-block h1 span {
@@ -196,28 +200,15 @@
       padding: 4px 10px;
       font-size: 0.78rem;
       border: 1px solid var(--border);
-      background: rgba(15, 23, 42, 0.8);
-      margin-bottom: 4px;
+      background: rgba(15, 23, 42, 0.85);
+      margin-bottom: 6px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
     body.light .hero-meta-badge {
-      background: rgba(255, 255, 255, 0.8);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1.1fr;
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    @media (max-width: 640px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
+      background: rgba(255, 255, 255, 0.9);
     }
 
     .card {
@@ -227,6 +218,7 @@
       border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+      margin-top: 12px;
     }
 
     body.light .card {
@@ -245,35 +237,21 @@
       gap: 8px;
     }
 
-    .cd-row {
-      display: flex;
-      gap: 8px;
-    }
-
-    .cd-pill {
-      flex: 1;
-      border-radius: 14px;
-      padding: 6px 4px;
-      text-align: center;
-      background: rgba(15, 23, 42, 0.9);
+    .cake-img {
+      width: 100%;
+      border-radius: 18px;
       border: 1px solid var(--border);
+      display: block;
     }
 
-    body.light .cd-pill {
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .cd-number {
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
-
-    .cd-label {
-      font-size: 0.65rem;
+    .cake-caption {
+      margin-top: 6px;
+      text-align: center;
+      font-size: 0.8rem;
       color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
     }
+
+    /* Mood + hearts */
 
     input[type="range"] {
       width: 100%;
@@ -289,6 +267,7 @@
       font-size: 0.78rem;
       color: var(--muted);
       min-height: 18px;
+      margin-bottom: 6px;
     }
 
     .hero-hearts {
@@ -299,17 +278,19 @@
       font-size: 0.78rem;
       color: var(--muted);
       margin-top: 8px;
+      flex-wrap: wrap;
     }
 
     .heart-input-wrap {
       display: flex;
       align-items: center;
       gap: 6px;
+      flex-wrap: nowrap;
     }
 
     #heartInput {
-      width: 52px;
-      padding: 3px 6px;
+      width: 54px;
+      padding: 4px 6px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: transparent;
@@ -340,7 +321,8 @@
       font-size: 1.05rem;
     }
 
-    /* HERO SIDE */
+    /* Right side */
+
     .hero-side {
       border-radius: 22px;
       padding: 16px 14px;
@@ -392,7 +374,7 @@
       background: rgba(255, 255, 255, 0.95);
     }
 
-    #anushaCanvas {
+    canvas {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -421,13 +403,8 @@
       color: var(--muted);
     }
 
-    .hero-side-note {
-      margin-top: 8px;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
+    /* Tabs + notes */
 
-    /* TABS / SLIDES */
     .tabs-shell {
       background: var(--card);
       border-radius: 22px;
@@ -672,6 +649,7 @@
     }
 
     /* Flying emojis */
+
     .flying-emoji {
       position: fixed;
       font-size: 1.3rem;
@@ -707,6 +685,7 @@
 
     <!-- HERO -->
     <section class="hero">
+      <!-- LEFT: MAIN -->
       <div class="hero-main">
         <div class="hero-content">
           <div class="pill-live">
@@ -729,69 +708,56 @@
             </div>
           </div>
 
-          <div class="card" style="text-align:center;">
+          <!-- Cake GIF card -->
+          <div class="card">
             <div class="card-title">
               <span>Cut the cake 🎂</span>
             </div>
+            <img src="cake.gif" alt="Cake cutting" class="cake-img" />
+            <div class="cake-caption">This cake is just for you, Anusha 💗</div>
+          </div>
 
-            <img 
-              src="cake.gif"
-              alt="Cake cutting"
-              style="
-                margin-top:12px;
-                max-width:100%;
-                border-radius:18px;
-                border:1px solid var(--border);
-              "
-            >
+          <!-- Mood + hearts -->
+          <div class="card">
+            <div class="card-title">
+              <span>Birthday mood meter</span>
+              <span style="font-size: 0.72rem;">Slide to see my excitement level</span>
+            </div>
+            <div class="mood-label">How excited am I about your birthday?</div>
+            <input type="range" min="1" max="5" value="5" id="moodSlider" />
+            <div class="mood-text" id="moodText"></div>
 
-            <p style="color:#9ca3af;font-size:0.8rem;margin-top:8px;">
-              This cake is just for you, Anusha 
-            </p>
-          /div>
+            <div style="font-size: 0.8rem; margin-top: 10px; margin-bottom: 4px;">
+              How much do you like this birthday wish?
+              Give a number of hearts from <strong>1</strong> to <strong>10</strong>.
+            </div>
 
-
-            <!-- Mood + hearts (rating 1–10) -->
-            <div class="card">
-              <div class="card-title">
-                <span>Birthday mood meter</span>
-                <span style="font-size: 0.72rem;">Slide to see my excitement level</span>
+            <div class="hero-hearts">
+              <div class="heart-input-wrap">
+                <input type="number" id="heartInput" min="1" max="10" value="10" />
+                <button class="heart-btn emoji-trigger" id="heartBtn" data-emojis="🎂,🥳">
+                  <span>💗</span>
+                  <span>Submit hearts</span>
+                </button>
               </div>
-              <div class="mood-label">How excited am I about your birthday?</div>
-              <input type="range" min="1" max="5" value="5" id="moodSlider" />
-              <div class="mood-text" id="moodText"></div>
-
-              <div style="font-size: 0.8rem; margin-top: 10px; margin-bottom: 4px;">
-                How much do you like this birthday wish?  
-                Give a number of hearts from <strong>1</strong> to <strong>10</strong>.
-              </div>
-
-              <div class="hero-hearts">
-                <div class="heart-input-wrap">
-                  <input type="number" id="heartInput" min="1" max="10" value="10" />
-                  <button class="heart-btn emoji-trigger" id="heartBtn" data-emojis="🎂,🥳">
-                    <span>💗</span>
-                    <span>Submit hearts</span>
-                  </button>
-                </div>
-                <div>
-                  Hearts given: <strong id="heartCount">0</strong> / 10
-                </div>
+              <div>
+                Hearts given: <strong id="heartCount">0</strong> / 10
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Side block -->
+      <!-- RIGHT: HER PHOTOS + NOTES -->
       <aside class="hero-side">
         <div class="hero-side-tag">Dashboard for</div>
         <div class="hero-side-name">Anusha Das</div>
         <div class="hero-side-caption">
-          Most of our story is just WhatsApp chats and calls for now — but even that is enough for me to be glad you’re here.
+          Most of our story is just WhatsApp chats and calls for now —
+          but even that is enough for me to be glad you’re here.
         </div>
 
-        <!-- Animated drawing of her photo -->
+        <!-- Animated drawing of first photo -->
         <div class="avatar-frame">
           <canvas id="anushaCanvas"></canvas>
           <div class="draw-hand" id="drawHand">✍️</div>
@@ -799,17 +765,19 @@
             When you add your photo here, a little hand will slowly “draw” you on this canvas 💫
           </div>
         </div>
-        <!-- Second animated photo -->
+
+        <!-- Animated drawing of second photo -->
         <div class="avatar-frame" style="margin-top:14px">
           <canvas id="anushaCanvas2"></canvas>
           <div class="draw-hand" id="drawHand2">✍️</div>
           <div class="avatar-placeholder-text" id="avatarPlaceholder2">
-            And one more moment of you… ✨
+            And another moment of you, drawn right after the first one ✨
           </div>
         </div>
+      </aside>
+    </section>
 
-
-    <!-- TABBED “SLIDES” AREA -->
+    <!-- TABBED SLIDES + NOTES -->
     <section class="tabs-shell">
       <div class="tabs-header">
         <div class="tabs-label">Sections</div>
@@ -822,7 +790,7 @@
       </div>
 
       <div class="tabs-grid">
-        <!-- Left side changes with tab -->
+        <!-- LEFT SIDE: changing panels -->
         <div>
           <!-- TODAY -->
           <div class="section-card tab-panel active" data-panel="today">
@@ -831,8 +799,8 @@
               <span style="font-size: 0.75rem; color: var(--muted);">Slide 1 · The highlight</span>
             </div>
             <p class="section-sub">
-              Anusha, I hope this birthday feels softer, calmer and kinder to you than the last year has been – in work,
-              in life, and in everything your mind keeps overthinking.
+              Anusha, I hope this birthday feels softer, calmer and kinder to you than the last year has been –
+              in work, in life, and in everything your mind keeps overthinking.
             </p>
             <div class="reason-list">
               <div class="reason-item">
@@ -963,7 +931,7 @@
           </div>
         </div>
 
-        <!-- Right side: from her side about you -->
+        <!-- RIGHT SIDE: notes from her about you -->
         <div class="section-card">
           <div class="section-heading">
             <span>From you, about Souvagya</span>
@@ -988,14 +956,13 @@
     </footer>
   </div>
 
-  <!-- ---------------- SHARED-STATE + ANIMATION SCRIPT ---------------- -->
+  <!-- SCRIPT -->
   <script type="module">
     /* -------------------- FIREBASE SETUP (SHARED STORAGE) -------------------- */
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
     import {
       getFirestore,
       doc,
-      getDoc,
       setDoc,
       onSnapshot
     } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
@@ -1024,16 +991,11 @@
       }
     }
 
-    /* -------------------- GRAB ELEMENTS -------------------- */
+    /* -------------------- BASIC ELEMENTS -------------------- */
+
     const body = document.body;
     const themeToggle = document.getElementById("themeToggle");
     const themeIcon = document.getElementById("themeIcon");
-
-    const cdDays = document.getElementById("cdDays");
-    const cdHours = document.getElementById("cdHours");
-    const cdMinutes = document.getElementById("cdMinutes");
-    const cdSeconds = document.getElementById("cdSeconds");
-    const countdownStatus = document.getElementById("countdownStatus");
 
     const moodSlider = document.getElementById("moodSlider");
     const moodText = document.getElementById("moodText");
@@ -1049,12 +1011,8 @@
     const tabButtons = document.querySelectorAll(".tab-btn");
     const tabPanels = document.querySelectorAll(".tab-panel");
 
-    const canvas = document.getElementById("anushaCanvas");
-    const drawHand = document.getElementById("drawHand");
-    const avatarPlaceholder = document.getElementById("avatarPlaceholder");
-    const frame = document.querySelector(".avatar-frame");
-
     /* -------------------- THEME TOGGLE -------------------- */
+
     function applyTheme(theme) {
       if (theme === "light") {
         body.classList.add("light");
@@ -1075,8 +1033,7 @@
       applyTheme(theme);
     });
 
-    
-    /* -------------------- MOOD SLIDER (LOCAL ONLY) -------------------- */
+    /* -------------------- MOOD SLIDER -------------------- */
     const moods = {
       1: "Trying to act normal, failing slightly.",
       2: "Pretty excited, pretending to be chill.",
@@ -1093,6 +1050,7 @@
     updateMood();
 
     /* -------------------- HEART RATING (SHARED) -------------------- */
+
     function clamp(val, min, max) {
       return Math.max(min, Math.min(max, val));
     }
@@ -1195,32 +1153,31 @@
       });
     });
 
-    /* -------------------- ANIMATED HAND DRAWING HER PICTURES (SEQUENCE) -------------------- */
+    /* -------------------- ANIMATED HAND DRAWING BOTH PHOTOS, ONE AFTER ANOTHER -------------------- */
     (function () {
       const canvas1 = document.getElementById("anushaCanvas");
       const hand1 = document.getElementById("drawHand");
       const placeholder1 = document.getElementById("avatarPlaceholder");
       const frame1 = canvas1 ? canvas1.parentElement : null;
-    
+
       const canvas2 = document.getElementById("anushaCanvas2");
       const hand2 = document.getElementById("drawHand2");
       const placeholder2 = document.getElementById("avatarPlaceholder2");
       const frame2 = canvas2 ? canvas2.parentElement : null;
-    
+
       if (!canvas1 || !hand1 || !frame1 || !canvas2 || !hand2 || !frame2) return;
-    
+
       const ctx1 = canvas1.getContext("2d");
       const ctx2 = canvas2.getContext("2d");
 
       const img1 = new Image();
       const img2 = new Image();
-  
-      // 👉 file names must match your actual images
+
       img1.src = "anusha.jpg";   // first photo
       img2.src = "anusha2.jpg";  // second photo
-    
+
       const ROWS = 90;
-    
+
       function drawImageInRows(canvas, ctx, hand, frame, img, placeholder, onDone) {
         let currentRow = 0;
 
@@ -1229,27 +1186,27 @@
           canvas.width = rect.width;
           canvas.height = rect.height;
         }
-    
+
         function step() {
           const w = canvas.width;
           const h = canvas.height;
           const sliceHImg = img.height / ROWS;
           const sliceHCan = h / ROWS;
-    
+
           const scale = Math.min(w / img.width, h / img.height);
           const drawW = img.width * scale;
           const drawH = img.height * scale;
           const offsetX = (w - drawW) / 2;
           const offsetY = (h - drawH) / 2;
-    
+
           if (currentRow === 0) {
             ctx.clearRect(0, 0, w, h);
           }
-    
+
           if (currentRow < ROWS) {
             const sy = sliceHImg * currentRow;
             const dy = offsetY + sliceHCan * currentRow;
-    
+
             ctx.save();
             ctx.drawImage(
               img,
@@ -1257,14 +1214,14 @@
               offsetX, dy, drawW, sliceHCan
             );
             ctx.restore();
-        
+
             const handX = offsetX + drawW * 0.9;
             const handY = dy + sliceHCan * 0.5;
             hand.style.transform = `translate(${handX}px, ${handY}px)`;
-    
+
             currentRow++;
             requestAnimationFrame(step);
-            } else {
+          } else {
             hand.style.transform += " translate(8px, -6px)";
             if (typeof onDone === "function") onDone();
           }
@@ -1274,13 +1231,12 @@
         if (placeholder) placeholder.style.display = "none";
         step();
 
-        // re-draw on resize (keeps quality if window resizes)
         window.addEventListener("resize", () => {
           resizeCanvas();
           step();
         });
       }
-    
+
       function startSecondWhenReady() {
         if (img2.complete) {
           drawImageInRows(canvas2, ctx2, hand2, frame2, img2, placeholder2);
@@ -1289,27 +1245,29 @@
             drawImageInRows(canvas2, ctx2, hand2, frame2, img2, placeholder2);
         }
       }
-    
+
       function startSequence() {
         drawImageInRows(canvas1, ctx1, hand1, frame1, img1, placeholder1, startSecondWhenReady);
       }
-    
+
       if (img1.complete) {
         startSequence();
       } else {
         img1.onload = startSequence;
       }
-    
+
       img1.onerror = () => {
         if (placeholder1) {
           placeholder1.textContent = "Couldn’t load the first photo 😅";
         }
       };
-    
+
       img2.onerror = () => {
         if (placeholder2) {
           placeholder2.textContent = "Couldn’t load the second photo 😅";
         }
       };
     })();
-    
+  </script>
+</body>
+</html>
