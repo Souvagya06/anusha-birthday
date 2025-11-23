@@ -729,32 +729,27 @@
             </div>
           </div>
 
-          <div class="hero-grid">
-            <!-- Countdown -->
-            <div class="card">
-              <div class="card-title">
-                <span>Countdown to your day</span>
-                <span id="countdownStatus" style="font-size: 0.72rem;">Waiting for the clock to hit your date ✨</span>
-              </div>
-              <div class="cd-row">
-                <div class="cd-pill">
-                  <div class="cd-number" id="cdDays">--</div>
-                  <div class="cd-label">Days</div>
-                </div>
-                <div class="cd-pill">
-                  <div class="cd-number" id="cdHours">--</div>
-                  <div class="cd-label">Hours</div>
-                </div>
-                <div class="cd-pill">
-                  <div class="cd-number" id="cdMinutes">--</div>
-                  <div class="cd-label">Mins</div>
-                </div>
-                <div class="cd-pill">
-                  <div class="cd-number" id="cdSeconds">--</div>
-                  <div class="cd-label">Secs</div>
-                </div>
-              </div>
+          <div class="card" style="text-align:center;">
+            <div class="card-title">
+              <span>Cut the cake 🎂</span>
             </div>
+
+            <img 
+              src="cake.gif"
+              alt="Cake cutting"
+              style="
+                margin-top:12px;
+                max-width:100%;
+                border-radius:18px;
+                border:1px solid var(--border);
+              "
+            >
+
+            <p style="color:#9ca3af;font-size:0.8rem;margin-top:8px;">
+              This cake is just for you, Anusha 
+            </p>
+          /div>
+
 
             <!-- Mood + hearts (rating 1–10) -->
             <div class="card">
@@ -808,8 +803,7 @@
         <div class="hero-side-note">
           Her photo file should be named <code>anusha.jpg</code> and kept in the same folder as this page.
         </div>
-      </aside>
-    </section>
+      
 
     <!-- TABBED “SLIDES” AREA -->
     <section class="tabs-shell">
@@ -1077,45 +1071,7 @@
       applyTheme(theme);
     });
 
-    /* -------------------- COUNTDOWN -------------------- */
-    const target = new Date("2025-11-27T00:00:00+05:30").getTime();
-
-    function updateCountdown() {
-      const now = Date.now();
-      const diff = target - now;
-
-      if (diff <= 0) {
-        cdDays.textContent = "0";
-        cdHours.textContent = "0";
-        cdMinutes.textContent = "0";
-        cdSeconds.textContent = "0";
-        countdownStatus.textContent = "It’s your day today 🎉";
-        return;
-      }
-
-      const seconds = Math.floor(diff / 1000);
-      const days = Math.floor(seconds / (3600 * 24));
-      const hours = Math.floor((seconds % (3600 * 24)) / 3600);
-      const minutes = Math.floor((seconds % 3600) / 60);
-      const secs = seconds % 60;
-
-      cdDays.textContent = days;
-      cdHours.textContent = hours.toString().padStart(2, "0");
-      cdMinutes.textContent = minutes.toString().padStart(2, "0");
-      cdSeconds.textContent = secs.toString().padStart(2, "0");
-
-      if (days === 0) {
-        countdownStatus.textContent = "Almost there… 💫";
-      } else if (days <= 3) {
-        countdownStatus.textContent = `${days} day(s) left · excitement level: high`;
-      } else {
-        countdownStatus.textContent = "Counting down quietly in the background ✨";
-      }
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
+    
     /* -------------------- MOOD SLIDER (LOCAL ONLY) -------------------- */
     const moods = {
       1: "Trying to act normal, failing slightly.",
