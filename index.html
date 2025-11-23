@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday, Anusha 🎂</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020617;
+      --card: #020617;
+      --accent: #ec4899;
+      --accent-alt: #f97316;
+      --accent-soft: rgba(236, 72, 153, 0.12);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.55);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, var(--bg) 45%);
+      color: var(--text);
+    }
+
+    .page{
+      max-width:1140px;
+      margin:auto;
+      padding:20px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing:3px;
+      color:var(--muted);
+    }
+
+    .logo-pill{
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:linear-gradient(45deg,#f97316,#ec4899);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:20px;
+    }
+
+    @media(max-width:900px){
+      .hero{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .hero-main{
+      padding:20px;
+      border:1px solid var(--border);
+      border-radius:25px;
+      background:#020617;
+    }
+
+    .pill-live{
+      padding:6px 12px;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border-radius:999px;
+      border:1px solid var(--accent);
+      font-size:12px;
+      letter-spacing:2px;
+      color:var(--accent);
+    }
+
+    h1 span{color:var(--accent)}
+    .hero-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+    }
+
+    .hero-meta-badge{
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:5px 12px;
+      font-size:14px;
+    }
+
+    .card{
+      margin-top:15px;
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:12px;
+      background:rgba(15,23,42,0.9);
+    }
+
+    .cd-row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .cd-pill{
+      border:1px solid var(--border);
+      border-radius:15px;
+      padding:8px;
+      text-align:center;
+      width:100%;
+      cursor:pointer;
+    }
+
+    .crazy{
+      font-size:20px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .crazy:active{
+      transform:scale(1.15) rotate(-2deg);
+    }
+
+    .hero-side{
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:18px;
+      background:rgba(15,23,42,0.96);
+    }
+
+    .avatar-frame{
+      margin-top:10px;
+      border:1px dashed var(--border);
+      height:200px;
+      border-radius:20px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    canvas{width:100%;height:100%;}
+
+    textarea,
+    input[type="number"]{
+      width:100%;
+      background:transparent;
+      border:1px solid var(--border);
+      border-radius:12px;
+      color:white;
+      padding:6px;
+      margin-top:4px;
+    }
+
+    .emoji-box{
+      border:1px dashed var(--accent);
+      padding:8px;
+      border-radius:14px;
+      margin-top:8px;
+      cursor:pointer;
+      background:rgba(236,72,153,0.1);
+    }
+
+    .tab-panel{display:none;}
+    .tab-panel.active{display:block;}
+
+    .flying-emoji{
+      position:absolute;
+      pointer-events:none;
+      animation:fly 1s ease forwards;
+    }
+
+    @keyframes fly{
+      from{opacity:1;}
+      to{transform:translateY(-100px);opacity:0;}
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+<header>
+  <div class="logo">
+    <div class="logo-pill"></div>
+    ANUSHA·SPACE
+  </div>
+</header>
+
+<section class="hero">
+<div class="hero-main">
+  <span class="pill-live">🟢 LIVE · BIRTHDAY DASHBOARD</span>
+
+  <div class="hero-top">
+    <div>
+      <h1>Happy Birthday, <span>Anusha</span> 🎂</h1>
+      <p>A tiny space on the internet made just for you.</p>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-badge">27 November</div>
+      <small>Built by <b>Souvagya Karmakar</b></small>
+    </div>
+  </div>
+
+  <div class="card">
+    <b>Countdown to your day</b>
+
+    <div class="cd-row" id="interactiveCounter">
+      <div class="cd-pill">
+        <div class="crazy" id="cdDays">--</div>
+        <small>Days</small>
+      </div>
+      <div class="cd-pill">
+        <div class="crazy" id="cdHours">--</div>
+        <small>Hours</small>
+      </div>
+      <div class="cd-pill">
+        <div class="crazy" id="cdMinutes">--</div>
+        <small>Mins</small>
+      </div>
+      <div class="cd-pill">
+        <div class="crazy" id="cdSeconds">--</div>
+        <small>Secs</small>
+      </div>
+    </div>
+
+    <small style="color:#9ca3af;">Try clicking / holding / double-clicking the counter 😉</small>
+  </div>
+
+</div>
+
+<aside class="hero-side">
+  <b>Anusha Das</b>
+  <div class="avatar-frame">
+    <canvas id="anushaCanvas"></canvas>
+    <div id="drawHand">✍️</div>
+  </div>
+
+  <textarea id="notesArea" placeholder="Write something about Souvagya here..."></textarea>
+</aside>
+</section>
+</div>
+
+<script>
+const cdDays = document.getElementById("cdDays");
+const cdHours = document.getElementById("cdHours");
+const cdMinutes = document.getElementById("cdMinutes");
+const cdSeconds = document.getElementById("cdSeconds");
+
+const target = new Date("2025-11-27T00:00:00+05:30").getTime();
+let crazy = false;
+let holdTimer = null;
+
+function updateCountdown(){
+  if(crazy) return;
+  const now = Date.now();
+  const diff = target - now;
+
+  const s = Math.floor(diff/1000);
+  const d = Math.floor(s/86400);
+  const h = Math.floor((s%86400)/3600);
+  const m = Math.floor((s%3600)/60);
+  const sec = s%60;
+
+  cdDays.textContent=d;
+  cdHours.textContent=h;
+  cdMinutes.textContent=m;
+  cdSeconds.textContent=sec;
+}
+setInterval(updateCountdown,1000);
+
+interactiveCounter.onclick=()=>{
+  [cdDays,cdHours,cdMinutes,cdSeconds].forEach(el=>{
+    el.textContent=Math.floor(Math.random()*60);
+  });
+  burst();
+}
+
+interactiveCounter.onmousedown=()=>{
+  crazy=true;
+  holdTimer=setInterval(()=>{
+    [cdDays,cdHours,cdMinutes,cdSeconds].forEach(el=>{
+      el.textContent=Math.floor(Math.random()*60);
+    });
+  },30)
+}
+
+interactiveCounter.onmouseup=()=>{
+  clearInterval(holdTimer);
+  crazy=false;
+}
+
+interactiveCounter.ondblclick=burst;
+
+function burst(){
+  for(let i=0;i<20;i++){
+    const span=document.createElement("span");
+    span.className="flying-emoji";
+    span.textContent=["🎂","🥳","💗","✨"][Math.floor(Math.random()*4)];
+    span.style.left=Math.random()*innerWidth+"px";
+    span.style.top=Math.random()*innerHeight+"px";
+    document.body.appendChild(span);
+    setTimeout(()=>span.remove(),1000)
+  }
+}
+
+/* Draw her image */
+const canvas=document.getElementById("anushaCanvas");
+const ctx=canvas.getContext("2d");
+const img=new Image();
+img.src="anusha.jpg";
+img.onload=()=>{
+  canvas.width=canvas.offsetWidth;
+  canvas.height=canvas.offsetHeight;
+  ctx.drawImage(img,0,0,canvas.width,canvas.height);
+};
+</script>
+</body>
+</html>
