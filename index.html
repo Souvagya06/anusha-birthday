@@ -799,6 +799,15 @@
             When you add your photo here, a little hand will slowly “draw” you on this canvas 💫
           </div>
         </div>
+        <!-- Second animated photo -->
+        <div class="avatar-frame" style="margin-top:14px">
+          <canvas id="anushaCanvas2"></canvas>
+          <div class="draw-hand" id="drawHand2">✍️</div>
+          <div class="avatar-placeholder-text" id="avatarPlaceholder2">
+            And one more moment of you… ✨
+          </div>
+        </div>
+
 
     <!-- TABBED “SLIDES” AREA -->
     <section class="tabs-shell">
@@ -1186,93 +1195,121 @@
       });
     });
 
-    /* -------------------- ANIMATED HAND DRAWING HER PICTURE -------------------- */
-    if (canvas && drawHand && frame) {
-      const ctx = canvas.getContext("2d");
-      const img = new Image();
+    /* -------------------- ANIMATED HAND DRAWING HER PICTURES (SEQUENCE) -------------------- */
+    (function () {
+      const canvas1 = document.getElementById("anushaCanvas");
+      const hand1 = document.getElementById("drawHand");
+      const placeholder1 = document.getElementById("avatarPlaceholder");
+      const frame1 = canvas1 ? canvas1.parentElement : null;
+    
+      const canvas2 = document.getElementById("anushaCanvas2");
+      const hand2 = document.getElementById("drawHand2");
+      const placeholder2 = document.getElementById("avatarPlaceholder2");
+      const frame2 = canvas2 ? canvas2.parentElement : null;
+    
+      if (!canvas1 || !hand1 || !frame1 || !canvas2 || !hand2 || !frame2) return;
+    
+      const ctx1 = canvas1.getContext("2d");
+      const ctx2 = canvas2.getContext("2d");
 
-      // 👉 This must match the uploaded file name
-      img.src = "anusha.jpg";
+      const img1 = new Image();
+      const img2 = new Image();
+  
+      // 👉 file names must match your actual images
+      img1.src = "anusha.jpg";   // first photo
+      img2.src = "anusha2.jpg";  // second photo
+    
+      const ROWS = 90;
+    
+      function drawImageInRows(canvas, ctx, hand, frame, img, placeholder, onDone) {
+        let currentRow = 0;
 
-      let rows = 90;
-      let currentRow = 0;
-      let drawing = false;
+        function resizeCanvas() {
+          const rect = frame.getBoundingClientRect();
+          canvas.width = rect.width;
+          canvas.height = rect.height;
+        }
+    
+        function step() {
+          const w = canvas.width;
+          const h = canvas.height;
+          const sliceHImg = img.height / ROWS;
+          const sliceHCan = h / ROWS;
+    
+          const scale = Math.min(w / img.width, h / img.height);
+          const drawW = img.width * scale;
+          const drawH = img.height * scale;
+          const offsetX = (w - drawW) / 2;
+          const offsetY = (h - drawH) / 2;
+    
+          if (currentRow === 0) {
+            ctx.clearRect(0, 0, w, h);
+          }
+    
+          if (currentRow < ROWS) {
+            const sy = sliceHImg * currentRow;
+            const dy = offsetY + sliceHCan * currentRow;
+    
+            ctx.save();
+            ctx.drawImage(
+              img,
+              0, sy, img.width, sliceHImg,
+              offsetX, dy, drawW, sliceHCan
+            );
+            ctx.restore();
+        
+            const handX = offsetX + drawW * 0.9;
+            const handY = dy + sliceHCan * 0.5;
+            hand.style.transform = `translate(${handX}px, ${handY}px)`;
+    
+            currentRow++;
+            requestAnimationFrame(step);
+            } else {
+            hand.style.transform += " translate(8px, -6px)";
+            if (typeof onDone === "function") onDone();
+          }
+        }
 
-      function resizeCanvas() {
-        const rect = frame.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
-      }
-
-      function startDrawing() {
-        if (!img.complete) return;
         resizeCanvas();
-        currentRow = 0;
-        drawing = true;
-        if (avatarPlaceholder) avatarPlaceholder.style.display = "none";
-        drawStep();
+        if (placeholder) placeholder.style.display = "none";
+        step();
+
+        // re-draw on resize (keeps quality if window resizes)
+        window.addEventListener("resize", () => {
+          resizeCanvas();
+          step();
+        });
       }
-
-      function drawStep() {
-        if (!drawing) return;
-        const w = canvas.width;
-        const h = canvas.height;
-
-        const sliceH = img.height / rows;
-        const sliceHCanvas = h / rows;
-
-        const scale = Math.min(w / img.width, h / img.height);
-        const drawW = img.width * scale;
-        const drawH = img.height * scale;
-        const offsetX = (w - drawW) / 2;
-        const offsetY = (h - drawH) / 2;
-
-        if (currentRow === 0) {
-          ctx.clearRect(0, 0, w, h);
-        }
-
-        if (currentRow < rows) {
-          const sy = sliceH * currentRow;
-          const dy = offsetY + sliceHCanvas * currentRow;
-
-          ctx.save();
-          ctx.globalAlpha = 1;
-          ctx.drawImage(
-            img,
-            0, sy, img.width, sliceH,
-            offsetX, dy, drawW, sliceHCanvas
-          );
-          ctx.restore();
-
-          const handX = offsetX + drawW * 0.9;
-          const handY = dy + sliceHCanvas * 0.5;
-          drawHand.style.transform = `translate(${handX}px, ${handY}px)`;
-
-          currentRow++;
-          requestAnimationFrame(drawStep);
+    
+      function startSecondWhenReady() {
+        if (img2.complete) {
+          drawImageInRows(canvas2, ctx2, hand2, frame2, img2, placeholder2);
         } else {
-          drawing = false;
-          drawHand.style.transform += " translate(8px, -6px)";
+          img2.onload = () =>
+            drawImageInRows(canvas2, ctx2, hand2, frame2, img2, placeholder2);
         }
       }
-
-      img.onload = function () {
-        startDrawing();
-      };
-
-      img.onerror = function () {
-        if (avatarPlaceholder) {
-          avatarPlaceholder.textContent =
-            "Once a photo named anusha.jpg is on the server, this canvas will draw it slowly ✍️";
+    
+      function startSequence() {
+        drawImageInRows(canvas1, ctx1, hand1, frame1, img1, placeholder1, startSecondWhenReady);
+      }
+    
+      if (img1.complete) {
+        startSequence();
+      } else {
+        img1.onload = startSequence;
+      }
+    
+      img1.onerror = () => {
+        if (placeholder1) {
+          placeholder1.textContent = "Couldn’t load the first photo 😅";
         }
       };
-
-      window.addEventListener("resize", () => {
-        if (!img.complete) return;
-        startDrawing();
-      });
-    }
-  </script>
-</body>
-</html>
-
+    
+      img2.onerror = () => {
+        if (placeholder2) {
+          placeholder2.textContent = "Couldn’t load the second photo 😅";
+        }
+      };
+    })();
+    
